@@ -1,4 +1,3 @@
-<a stock="DE000LS9APU1" popover="tets" popover-trigger="show">test</a>
 <div class="row">
 	<div class="col-sm-9" id="feed" class="main-content">
 		<div class="tutorial" ng-hide="displaymessages.length > 0">
@@ -51,7 +50,7 @@
 					<span class="feed-time pull-right" title="{{message.time * 1000 | date:'short'}}">{{vtime(message.time)}}</span>
 					<a ui-sref="game.profile.overview({userId: message.srcusername})" class="feed-link">{{message.srcusername}}</a> hat {{message.amount}} Anteile an 
 						<span ng-show="message.leader"><a ui-sref="game.profile.overview({userId: message.leader})">{{message.stockname}}</a></span>
-						<span ng-hide="message.leader">{{message.stockname}}</span>
+						<a stock isin="{{message.stocktextid}}" title="{{message.stockname}}" ng-hide="message.leader">{{message.stockname}}</span>
 					<a ui-sref="game.tradeDetails({tradeId: message.targetid})" class="feed-link">gekauft</a>.
 				</div>
 			</div>
