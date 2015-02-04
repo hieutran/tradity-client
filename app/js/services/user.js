@@ -21,8 +21,9 @@ angular.module('tradity')
 				return user;
 			user.orders 		= res.orders 		|| [];
 			user.pinboard 		= res.pinboard 		|| [];
+			user.values 		= res.values 		|| [];
 			user.achievements 	= res.achievements 	|| [];
-			user.profilepic = (config.server().protocol + '://' + config.server().hostname + '/' +
+			user.profilepic = (config.server().protocol + '://' + config.server().hostname  +
 				 (user.profilepic || config.DEFAULT_PROFILE_IMG));
 			user.parsed = true;
 			return user;
@@ -64,6 +65,15 @@ angular.module('tradity')
 			});
 		})
 
+		var fetchSelf = function() {
+			socket.emit('get-user-info', {
+				lookfor: '$self',
+				nohistory: true,
+				_cache: 20
+			});
+		}
+		fetchSelf();
+
 		return {
 			/**
 			 * @ngdoc property
@@ -93,6 +103,7 @@ angular.module('tradity')
 				}).then(function(data) {
 					switch (data.code) {
 						case 'login-success':
+							fetchSelf();
 							$state.go('game.ranking.all');
 							break;
 						case 'login-badname':
@@ -153,7 +164,14 @@ angular.module('tradity')
 				}).then(function(res) {
 					return parse(res);
 				})
-			 }
+			 },
+			 /**
+			 * @ngdoc method
+			 * @name tradity.user#fetch
+			 * @methodOf tradity.user
+			 * @description pokes the server for the user
+			 */
+			 fetch:fetchSelf
 		};
 	})
 	/**
