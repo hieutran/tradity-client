@@ -9,7 +9,7 @@ angular.module('tradity')
 	 * Get stock info with the isin over differen api's
 	 */
 	.factory('stock', function ($http) {
-		var wikifolioApi = 'http://wf.superbarne.de/api/v1';
+		var wikifolioApi = 'https://wfapi.tradity.de/api/v1';
 		return {
 			getComments:function(isin){
 				return $http.get(wikifolioApi+'/comments?underlyingISIN='+isin+'&limit=3').then(function(res){
