@@ -2,15 +2,6 @@
 
 angular.module('tradity')
 	.factory('event', function ($sce,$user,config) {
-		var escapeHTML = function(s) {
-			if (!s)
-				return s;
-			return s.replace(/&/g, '&amp;')
-				.replace(/</g, '&lt;')
-				.replace(/>/, '&gt;')
-				.replace(/'/, '&#039;')
-				.replace(/"/, '&quot;');
-		};
 		/**
 		 * @ngdoc service
 		 * @name tradity.event
@@ -96,6 +87,26 @@ angular.module('tradity')
 					time: event.eventtime,
 					leader: event.leader,
 					amount: Math.abs(event.amount)
+				};
+			},
+			/**
+			 * @ngdoc method
+			 * @kind function
+			 * @name tradity.event#blogpost
+			 * @methodOf tradity.event
+			 * @param {object} event with detailed information
+			 * @description
+			 * parse the 'blogpost' event
+			 */
+			blogpost:function(event) {
+				return {
+					type: event.type,
+					excerpt: $sce.trustAsHtml(event.excerpt),
+					link: event.link,
+					title: $sce.trustAsHtml(event.title),
+					time: event.posttime,
+					schoolpath: event.schoolpath,
+					schoolname: event.schoolname
 				};
 			},
 			/**

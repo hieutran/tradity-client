@@ -63,7 +63,6 @@ body {
 }
 
 #pagenav {
-	margin-top: 50px;
 	margin-bottom:0px;
 	padding:0px;
 	.navbar-right {
@@ -131,6 +130,10 @@ body {
 	text-align:center;	
 }
 
+#view {
+	margin-top:50px;
+}
+
 .main-content {
 	padding-top:15px;
 }
@@ -158,5 +161,22 @@ hr {
 	max-width:400px;
 	.loading {
 		padding:10px;
+	}
+}
+
+
+#pagesubnav, #pagesubnav.navbar-default .navbar-collapse, #pagesubnav.navbar-default .navbar-form {
+	border-color:#fff;
+	text-align: center;
+	.navbar-default .navbar-collapse, .navbar-default .navbar-form {
+		border-color:#fff;
+		text-align: center;
+	}
+}
+
+@media (min-width: @screen-sm-min) {
+	#pagesubnav, #pagesubnav.navbar-default .navbar-collapse, #pagesubnav.navbar-default .navbar-form {
+		text-align:left;
+		border-color:#e7e7e7;
 	}
 }
